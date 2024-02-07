@@ -44,6 +44,7 @@ if (!customElements.get('product-form')) {
         fetch(`${routes.cart_add_url}`, config)
           .then((response) => response.json())
           .then((response) => {
+            console.log('response',response);
             if (response.status) {
               publish(PUB_SUB_EVENTS.cartError, {
                 source: 'product-form',
@@ -64,6 +65,7 @@ if (!customElements.get('product-form')) {
               window.location = window.routes.cart_url;
               return;
             }
+             cartBOYOCheck();
 
             if (!this.error)
               publish(PUB_SUB_EVENTS.cartUpdate, {
